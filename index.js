@@ -24,7 +24,7 @@ const MAGIC_TABLE = {
     "Sand", "Sap", "Serpent", "Slime", "Stone", "Tar",
     "Moss", "Obsidian", "Oil", "Poison", "Rat", "Salt",
     "Glass", "Honey", "Ice", "Insect", "Wood", "Lava",
-    "Thorn", "Vine", "Water", "Wine", "Worm", "Ash",
+    "Thorn", "Vine", "Water", "Wine", "Porridge", "Ash",
   ],
   "Ethereal Effects": [
     "Avenging", "Banishing", "Blinding", "Charming", "Communicating", "Compelling",
@@ -78,9 +78,9 @@ const command = new SlashCommandBuilder()
   .addIntegerOption((opt) =>
     opt
       .setName("count")
-      .setDescription("How many entries to roll (1–10, default 1)")
+      .setDescription("How many entries to roll (1–100, default 1)")
       .setMinValue(1)
-      .setMaxValue(10)
+      .setMaxValue(100)
       .setRequired(false)
   );
 
@@ -109,7 +109,7 @@ client.on("interactionCreate", async (interaction) => {
     ({ category, word }) => `• **${word}** — *${category}*`
   );
 
-  const header = count === 1 ? "🎲 Magic Roll" : `🎲 Magic Roll ×${count}`;
+  const header = count === 1 ? "🧙‍♂️ *The wizard mutters a magic word...*" : `🧙‍♂️ *The wizard mutters ${count} magic words...*`;
   await interaction.reply(`**${header}**\n${lines.join("\n")}`);
 });
 
